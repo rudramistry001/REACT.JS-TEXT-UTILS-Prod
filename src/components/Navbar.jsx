@@ -2,9 +2,11 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
+import { useTheme } from '../context/ThemeContext'
 
 export default function Navbar(props) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { isDarkMode, toggleTheme } = useTheme();
 
   return (
     <motion.nav 
@@ -75,6 +77,14 @@ export default function Navbar(props) {
                 </button>
               </div>
             </div>
+            <div className="ml-6">
+              <button
+                onClick={toggleTheme}
+                className="px-4 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              >
+                {isDarkMode ? 'Light Mode' : 'Dark Mode'}
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -119,6 +129,14 @@ export default function Navbar(props) {
             />
             <button className="mt-2 w-full px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
               Search
+            </button>
+          </div>
+          <div className="mt-4 px-3">
+            <button
+              onClick={toggleTheme}
+              className="w-full px-4 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
+              {isDarkMode ? 'Light Mode' : 'Dark Mode'}
             </button>
           </div>
         </div>
